@@ -79,7 +79,7 @@
                         {{-- Pagination --}}
                         <div class="mt-3">
                             <nav aria-label="Page navigation example">
-                                {{ $article->onEachSide(1)->links('vendor.pagination.custom') }}
+                                {{-- $article->onEachSide(1)->links('vendor.pagination.custom') --}}
                             </nav>
                         </div>
                     </div>

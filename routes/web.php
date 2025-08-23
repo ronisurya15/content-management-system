@@ -34,3 +34,7 @@ Route::prefix('admin')->group(function () {
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+    // tag
+    use App\Http\Controllers\TagController;
+
+    Route::resource('tag', TagController::class);

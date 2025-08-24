@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="{{ route('dashboard') }}">
-                        MINI CMS
+                        MCMS
                     </a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -49,6 +49,20 @@
                     <a href="{{ route('dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('tags.*') ? 'active' : '' }}">
+                    <a href="{{ route('article.index') }}" class='sidebar-link'>
+                        <i class="bi bi-tag"></i>
+                        <span>Tag</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('category.*') ? 'active' : '' }}">
+                    <a href="{{ route('article.index') }}" class='sidebar-link'>
+                        <i class="bi bi-list-task"></i>
+                        <span>Kategori</span>
                     </a>
                 </li>
 

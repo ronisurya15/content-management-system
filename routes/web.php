@@ -1,14 +1,19 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\CategoryController;
 
+// Public Blog
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
+// Admin Area
 Route::prefix('admin')->group(function () {
     // Dashboard
     Route::prefix('dashboard')->group(function () {
@@ -33,4 +38,10 @@ Route::prefix('admin')->group(function () {
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Tag
+    Route::resource('tag', TagController::class);
+
+    // Category
+    Route::resource('category', CategoryController::class);
 });

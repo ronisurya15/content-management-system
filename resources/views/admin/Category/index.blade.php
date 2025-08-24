@@ -10,10 +10,10 @@
         <div class="col-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    Daftar Artikel
+                    Daftar Kategori
 
                     <div class="float-end">
-                        <a href="{{ route('article.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary">Tambah</a>
                     </div>
                 </div>
 
@@ -23,41 +23,25 @@
                             <thead class="bg-light">
                                 <tr class="text-center align-middle">
                                     <th>No</th>
-                                    <th>Thumbnail</th>
-                                    <th>Judul</th>
-                                    <th>Ringkasan</th>
-                                    <th>Status</th>
+                                    <th>Nama Kategori</th>
+                                    <th>Slug</th>
+                                    <th>Deskripsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($article as $i => $item)
+                                @forelse ($categories as $i => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td style="max-width: 100px;">
-                                        <img src="{{ asset('storage/' . $item->thumbnail) }}" alt="{{ $item->title }}"
-                                            class="img-thumbnail w-100">
-                                    </td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ \Str::limit(strip_tags($item->excerpt), 100) }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->slug }}</td>
+                                    <td>{{ \Str::limit(strip_tags($item->description), 100) }}</td>
                                     <td>
-                                        @if($item->is_published)
-                                        <span class="badge bg-success">Publish</span>
-                                        @else
-                                        <span class="badge bg-secondary">Draft</span>
-                                        @endif
-                                    </td>
-
-                                    <td>
-                                        <a href="{{ route('blog.show', $item->slug) }}" class="btn btn-sm btn-info mb-1" title="Lihat" target="_blank">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-
-                                        <a href="{{ route('article.edit', $item->id) }}" class="btn btn-sm btn-warning mb-1" title="Edit">
+                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-sm btn-warning mb-1" title="Edit">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
 
-                                        <form action="{{ route('article.destroy', $item->id) }}" method="POST" class="d-inline form-delete">
+                                        <form action="{{ route('category.destroy', $item->id) }}" method="POST" class="d-inline form-delete">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-danger btn-delete" title="Hapus">
@@ -68,7 +52,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Belum ada artikel.</td>
+                                    <td colspan="5" class="text-center">Belum ada kategori.</td>
                                 </tr>
                                 @endforelse
                             </tbody>
@@ -79,7 +63,7 @@
                         {{-- Pagination --}}
                         <div class="mt-3">
                             <nav aria-label="Page navigation example">
-                                {{-- $article->onEachSide(1)->links('vendor.pagination.custom') --}}
+                                {{-- $categories->onEachSide(1)->links('vendor.pagination.custom') --}}
                             </nav>
                         </div>
                     </div>

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-
-
     protected $fillable = ['title', 'content'];
 
     public function tags()
@@ -18,5 +16,10 @@ class Article extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

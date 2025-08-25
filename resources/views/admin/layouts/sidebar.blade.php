@@ -52,8 +52,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('tags.*') ? 'active' : '' }}">
-                    <a href="{{ route('article.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('tag.*') ? 'active' : '' }}">
+                    <a href="{{ route('tag.index') }}" class='sidebar-link'>
                         <i class="bi bi-tag"></i>
                         <span>Tag</span>
                     </a>
@@ -92,7 +92,8 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                </li>
+                    {{-- Tag --}}
+               
             </ul>
 
         </div>

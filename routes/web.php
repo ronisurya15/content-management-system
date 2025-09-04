@@ -20,6 +20,10 @@ Route::prefix('auth')->group(function () {
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth.authenticate');
 });
 
+Route::prefix('comments')->group(function () {
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+});
+
 // Admin Area
 Route::prefix('admin')->middleware('auth')->group(function () {
     // Dashboard
@@ -39,8 +43,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Comments
     Route::prefix('comments')->group(function () {
-        Route::resource('comments', CommentController::class);
-        Route::put('/update', [CommentController::class, 'update'])->name('comments.update');
+        Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+        Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
         Route::put('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
         Route::put('/comments/{comment}/reject', [CommentController::class, 'reject'])->name('comments.reject');
     });

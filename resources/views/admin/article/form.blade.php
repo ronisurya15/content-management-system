@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+@stop
+
 @section('content')
 <div class="page-content">
     <section class="row">
@@ -77,6 +81,33 @@
                             </select>
                         </div>
 
+                        {{-- Category --}}
+                        <div class="form-group mt-3 mandatory">
+                            <label for="categories" class="form-label">Kategori</label>
+                            <select name="categories[]" id="categories" class="form-select choices" multiple data-parsley-required="true">
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    @if(collect(old('categories', $isEdit ? $article->categories->pluck('id')->toArray() : []))->contains($category->id)) selected @endif>
+                                    {{ $category->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Tags --}}
+                        <div class="form-group mt-3 mandatory">
+                            <label for="tags" class="form-label">Tags</label>
+                            <select name="tags[]" id="tags" class="form-select choices" multiple data-parsley-required="true">
+                                @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}"
+                                    @if(collect(old('tags', $isEdit ? $article->tags->pluck('id')->toArray() : []))->contains($tag->id)) selected @endif>
+                                    {{ $tag->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                         {{-- SEO --}}
                         <hr class="my-4">
                         <h5>SEO</h5>
@@ -112,6 +143,8 @@
 @stop
 
 @section('script')
+<script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+<script src="{{ asset('assets/static/js/pages/form-element-select.js') }}"></script>
 <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/extensions/parsleyjs/parsley.min.js') }}"></script>
 <script src="{{ asset('assets/static/js/pages/parsley.js') }}"></script>

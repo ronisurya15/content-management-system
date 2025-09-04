@@ -25,7 +25,8 @@
                                     <th>No</th>
                                     <th>Thumbnail</th>
                                     <th>Judul</th>
-                                    <th>Ringkasan</th>
+                                    <th>Tag</th>
+                                    <th>Kategori</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -39,7 +40,23 @@
                                             class="img-thumbnail w-100">
                                     </td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ \Str::limit(strip_tags($item->excerpt), 100) }}</td>
+                                    {{-- Categories --}}
+                                    <td>
+                                        @forelse ($item->categories as $category)
+                                        <span class="badge bg-primary">{{ $category->name }}</span>
+                                        @empty
+                                        <span class="text-muted">-</span>
+                                        @endforelse
+                                    </td>
+
+                                    {{-- Tags --}}
+                                    <td>
+                                        @forelse ($item->tags as $tag)
+                                        <span class="badge bg-info text-dark">{{ $tag->name }}</span>
+                                        @empty
+                                        <span class="text-muted">-</span>
+                                        @endforelse
+                                    </td>
                                     <td>
                                         @if($item->is_published)
                                         <span class="badge bg-success">Publish</span>

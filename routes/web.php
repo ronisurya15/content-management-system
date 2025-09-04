@@ -20,7 +20,7 @@ Route::prefix('auth')->group(function () {
 });
 
 // Admin Area
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     // Dashboard
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 use Str;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $articles = Article::where('is_published', 1)->orderBy('published_at', 'DESC')->paginate(9);
+        $articles = Article::where('is_published', 1)
+            ->orderBy('published_at', 'DESC')
+            ->paginate(9);
 
         return view('users.blog.index', compact('articles'));
     }

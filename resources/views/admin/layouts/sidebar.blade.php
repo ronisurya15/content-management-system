@@ -74,13 +74,13 @@
                     </a>
                 </li>
 
-                {{-- Profile --}}
-                <!-- <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span>Profil</span>
+                {{-- Comments --}}
+                <li class="sidebar-item {{ request()->routeIs('comments.*') ? 'active' : '' }}">
+                    <a href="{{ route('comments.index') }}" class='sidebar-link'>
+                        <i class="bi bi-chat-dots"></i>
+                        <span>Moderasi Komentar</span>
                     </a>
-                </li> -->
+                </li>
 
                 {{-- Logout --}}
                 <li class="sidebar-item">

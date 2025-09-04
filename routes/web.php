@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 
 // Public Blog
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
@@ -36,10 +37,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
     });
 
-    // Profile
-    Route::prefix('profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
-        Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
+    // Comments
+    Route::prefix('comments')->group(function () {
+        Route::resource('comments', CommentController::class);
+        Route::put('/update', [CommentController::class, 'update'])->name('comments.update');
+        Route::put('/comments/{comment}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+        Route::put('/comments/{comment}/reject', [CommentController::class, 'reject'])->name('comments.reject');
     });
 
     // Logout

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,6 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->paginate(10);
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -33,15 +33,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'slug'  => 'required|string|max:255|unique:categories,slug',
-            'description' => 'nullable|string',
+            'name'  => 'required|string|max:255'
         ]);
 
         Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->slug),
-            'description' => $request->description,
+            'name' => $request->name
         ]);
 
         return redirect()->route('category.index')
@@ -64,14 +60,10 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            'slug'  => 'required|string|max:255|unique:categories,slug,' . $category->id,
-            'description' => 'nullable|string',
         ]);
 
         $category->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->slug),
-            'description' => $request->description,
         ]);
 
         return redirect()->route('category.index')

@@ -42,20 +42,6 @@
                                 name="name" value="{{ old('name', $category->name) }}" data-parsley-required="true" />
                         </div>
 
-                        {{-- Slug --}}
-                        <div class="form-group mandatory mt-3">
-                            <label for="slug" class="form-label">Slug</label>
-                            <input type="text" id="slug" class="form-control" placeholder="slug-kategori"
-                                name="slug" value="{{ old('slug', $category->slug) }}" data-parsley-required="true" />
-                        </div>
-
-                        {{-- Deskripsi (opsional) --}}
-                        <div class="form-group mt-3">
-                            <label for="description" class="form-label">Deskripsi</label>
-                            <textarea id="description" class="form-control" name="description" rows="3"
-                                placeholder="Tuliskan deskripsi kategori (opsional)...">{{ old('description', $category->description) }}</textarea>
-                        </div>
-
                         <hr class="my-4">
 
                         {{-- Submit --}}

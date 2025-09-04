@@ -95,14 +95,6 @@
                                 data-parsley-trigger="change">{{ old('meta_description', $article->meta_description) }}</textarea>
                         </div>
 
-                        <div class="form-group mt-3 mandatory">
-                            <label for="meta_keywords" class="form-label">Meta Keywords</label>
-                            <input type="text" id="meta_keywords" name="meta_keywords" class="form-control"
-                                value="{{ old('meta_keywords', $article->meta_keywords) }}"
-                                placeholder="Contoh: laravel, tutorial, pemrograman"
-                                data-parsley-required="true" data-parsley-trigger="change" />
-                        </div>
-
                         <hr class="my-4">
 
                         {{-- Submit --}}

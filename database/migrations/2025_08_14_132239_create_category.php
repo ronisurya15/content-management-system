@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // nama kategori
-            $table->string('slug')->unique(); // slug unik
-            $table->text('description')->nullable(); // deskripsi opsional
+            $table->string('name');
             $table->timestamps();
         });
     }

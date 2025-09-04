@@ -60,7 +60,7 @@
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('category.*') ? 'active' : '' }}">
-                    <a href="{{ route('article.index') }}" class='sidebar-link'>
+                    <a href="{{ route('category.index') }}" class='sidebar-link'>
                         <i class="bi bi-list-task"></i>
                         <span>Kategori</span>
                     </a>
@@ -75,12 +75,12 @@
                 </li>
 
                 {{-- Profile --}}
-                <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                <!-- <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                     <a href="" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span>Profil</span>
                     </a>
-                </li>
+                </li> -->
 
                 {{-- Logout --}}
                 <li class="sidebar-item">
@@ -93,7 +93,7 @@
                         @csrf
                     </form>
                     {{-- Tag --}}
-               
+
             </ul>
 
         </div>

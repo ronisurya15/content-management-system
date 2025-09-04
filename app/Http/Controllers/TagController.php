@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -33,15 +32,11 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|max:255|unique:tags,name',
-            'slug'        => 'nullable|string|max:255|unique:tags,slug',
-            'description' => 'nullable|string',
+            'name' => 'required|string|max:255|unique:tags,name',
         ]);
 
         Tag::create([
-            'name'        => $request->name,
-            'slug'        => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
-            'description' => $request->description,
+            'name'        => $request->name
         ]);
 
         return redirect()->route('tag.index')->with('success', 'Tag berhasil ditambahkan.');
@@ -63,14 +58,10 @@ class TagController extends Controller
     {
         $request->validate([
             'name'        => 'required|string|max:255|unique:tags,name,' . $tag->id,
-            'slug'        => 'nullable|string|max:255|unique:tags,slug,' . $tag->id,
-            'description' => 'nullable|string',
         ]);
 
         $tag->update([
             'name'        => $request->name,
-            'slug'        => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
-            'description' => $request->description,
         ]);
 
         return redirect()->route('tag.index')->with('success', 'Tag berhasil diperbarui.');
@@ -82,6 +73,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
+
         return redirect()->route('tag.index')->with('success', 'Tag berhasil dihapus.');
     }
 }

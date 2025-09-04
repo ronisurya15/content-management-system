@@ -24,8 +24,6 @@
                                 <tr class="text-center align-middle">
                                     <th>No</th>
                                     <th>Nama Tag</th>
-                                    <th>Slug</th>
-                                    <th>Deskripsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -34,8 +32,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->slug }}</td>
-                                    <td>{{ \Str::limit(strip_tags($item->description), 100) }}</td>
                                     <td>
                                         <a href="{{ route('tag.edit', $item->id) }}" class="btn btn-sm btn-warning mb-1" title="Edit">
                                             <i class="bi bi-pencil-square"></i>

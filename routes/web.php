@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
@@ -12,6 +12,12 @@ use App\Http\Controllers\CategoryController;
 // Public Blog
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// Login
+Route::prefix('auth')->group(function () {
+    Route::get('/signin', [AuthController::class, 'signin'])->name('login');
+    Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+});
 
 // Admin Area
 Route::prefix('admin')->group(function () {
